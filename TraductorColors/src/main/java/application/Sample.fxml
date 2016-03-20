@@ -8,43 +8,32 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="application.SampleController">
-	<left>
+<BorderPane xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SampleController">
+   <center>
 		<Pane prefHeight="415.0" prefWidth="475.0" BorderPane.alignment="CENTER">
 			<children>
-				<ComboBox fx:id="idioma" layoutX="263.0" layoutY="44.0"
-					onMouseClicked="#triarColor" prefHeight="25.0" prefWidth="176.0"
-					promptText="Triar un idioma" />
-				<TextField fx:id="color" layoutX="45.0" layoutY="88.0"
-					prefHeight="25.0" prefWidth="226.0" />
-				<Button fx:id="btnCercar" layoutX="303.0" layoutY="88.0"
-					mnemonicParsing="false" onMouseClicked="#traduirColor" prefHeight="25.0"
-					prefWidth="96.0" text="Cerca" />
-				<Label layoutX="84.0" layoutY="202.0" text="Castellà">
+				<ComboBox fx:id="idioma" layoutX="263.0" layoutY="44.0" prefHeight="25.0" prefWidth="176.0" promptText="Triar un idioma" />
+				<TextField fx:id="nomColor" layoutX="45.0" layoutY="88.0" prefHeight="25.0" prefWidth="226.0" />
+				<Button fx:id="btnCercar" layoutX="303.0" layoutY="88.0" mnemonicParsing="false" onMouseClicked="#traduirColor" prefHeight="25.0" prefWidth="96.0" text="Cerca" />
+				<Label fx:id="idioma1" layoutX="84.0" layoutY="202.0" prefHeight="18.0" prefWidth="64.0">
 					<font>
 						<Font name="Serif Regular" size="15.0" />
 					</font>
 				</Label>
-				<Label fx:id="colorCaste" layoutX="177.0" layoutY="199.0"
-					prefHeight="24.0" prefWidth="212.0"
-					style="-fx-background-color: white; -fx-border-color: black;" />
-				<Label layoutX="85.0" layoutY="273.0" text="Francès">
+				<Label fx:id="color1" layoutX="177.0" layoutY="199.0" prefHeight="24.0" prefWidth="212.0" style="-fx-background-color: white; -fx-border-color: black;" />
+				<Label fx:id="idioma2" layoutX="85.0" layoutY="273.0" prefHeight="18.0" prefWidth="55.0">
 					<font>
 						<Font name="Serif Regular" size="15.0" />
 					</font>
 				</Label>
-				<Label fx:id="colorFran" layoutX="175.0" layoutY="271.0"
-					prefHeight="22.0" prefWidth="217.0"
-					style="-fx-background-color: white; -fx-border-color: black;" />
-				<Label layoutX="87.0" layoutY="344.0" text="Anglès">
+				<Label fx:id="color2" layoutX="175.0" layoutY="271.0" prefHeight="22.0" prefWidth="217.0" style="-fx-background-color: white; -fx-border-color: black;" />
+				<Label fx:id="idioma3" layoutX="87.0" layoutY="344.0" prefHeight="18.0" prefWidth="58.0">
 					<font>
 						<Font name="Serif Regular" size="15.0" />
 					</font>
 				</Label>
-				<Label layoutX="175.0" layoutY="341.0" prefHeight="24.0"
-					prefWidth="217.0" style="-fx-background-color: white; -fx-border-color: black;" />
+				<Label fx:id="color3" layoutX="175.0" layoutY="341.0" prefHeight="24.0" prefWidth="217.0" style="-fx-background-color: white; -fx-border-color: black;" />
 			</children>
 		</Pane>
-	</left>
+   </center>
 </BorderPane>
