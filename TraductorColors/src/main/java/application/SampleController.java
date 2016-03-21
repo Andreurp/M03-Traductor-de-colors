@@ -57,6 +57,29 @@ public class SampleController implements Initializable{
 		String idiomaTriat=idioma.getValue();
 		String nom=nomColor.getText();
 		
+		switch (idiomaTriat) {
+		case "Català":
+			idioma1.setText("Castellà");
+			idioma2.setText("Francès");
+			idioma3.setText("Anglès");
+			break;
+		case "Castellà":
+			idioma1.setText("Català");
+			idioma2.setText("Francès");
+			idioma3.setText("Anglès");
+			break;
+		case "Francès":
+			idioma1.setText("Català");
+			idioma2.setText("Castellà");
+			idioma3.setText("Anglès");
+			break;
+		case "Anglès":
+			idioma1.setText("Català");
+			idioma2.setText("Castellà");
+			idioma3.setText("Francès");
+			break;
+		}
+		
 		if(idiomaTriat.equals("Català")){
 			idiomaTriat="nom";
 		}
@@ -72,7 +95,13 @@ public class SampleController implements Initializable{
 					Statement consulta = con.createStatement();
 					ResultSet resultat = consulta.executeQuery("SELECT * FROM colors WHERE " + idiomaTriat + " = '" + nom + "'");
 					
+					int[] posicions = new int[3];
+
 					
+
+						color1.setText(resultat.getString(posicions[0] + 2));
+						color2.setText(resultat.getString(posicions[1] + 2));
+						color3.setText(resultat.getString(posicions[2] + 2));
 					con.close();
 				}
 			} catch (SQLException e) {
