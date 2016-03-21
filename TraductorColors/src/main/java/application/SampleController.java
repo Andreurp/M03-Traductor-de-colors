@@ -98,7 +98,7 @@ public class SampleController implements Initializable{
 					
 					while(resultat.next()){
 						switch (idiomaTriat) {
-						case "catala":
+						case "nom":
 							color1.setText(resultat.getString(2));
 							color2.setText(resultat.getString(3));
 							color3.setText(resultat.getString(4));
