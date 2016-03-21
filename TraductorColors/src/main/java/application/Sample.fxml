@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
@@ -15,6 +16,7 @@
 				<ComboBox fx:id="idioma" layoutX="263.0" layoutY="44.0" prefHeight="25.0" prefWidth="176.0" promptText="Triar un idioma" />
 				<TextField fx:id="nomColor" layoutX="45.0" layoutY="88.0" prefHeight="25.0" prefWidth="226.0" />
 				<Button fx:id="btnCercar" layoutX="303.0" layoutY="88.0" mnemonicParsing="false" onMouseClicked="#traduirColor" prefHeight="25.0" prefWidth="96.0" text="Cerca" />
+            <FlowPane layoutX="40.0" layoutY="171.0" prefHeight="220.0" prefWidth="392.0" style="-fx-border-color: black;" />
 				<Label fx:id="idioma1" layoutX="84.0" layoutY="202.0" prefHeight="18.0" prefWidth="64.0">
 					<font>
 						<Font name="Serif Regular" size="15.0" />
