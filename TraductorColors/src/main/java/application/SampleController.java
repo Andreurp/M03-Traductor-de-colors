@@ -43,10 +43,10 @@ public class SampleController implements Initializable{
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		idioma.getItems().addAll(
-				"Català",
-				"Castellà",
-				"Francès",
-				"Anglès"
+				"catala",
+				"castella",
+				"frances",
+				"angles"
 				);
 	}
 	
@@ -58,59 +58,78 @@ public class SampleController implements Initializable{
 		String nom=nomColor.getText();
 		
 		switch (idiomaTriat) {
-		case "Català":
+		case "catala":
 			idioma1.setText("Castellà");
 			idioma2.setText("Francès");
 			idioma3.setText("Anglès");
 			break;
-		case "Castellà":
+		case "castella":
 			idioma1.setText("Català");
 			idioma2.setText("Francès");
 			idioma3.setText("Anglès");
 			break;
-		case "Francès":
+		case "frances":
 			idioma1.setText("Català");
 			idioma2.setText("Castellà");
 			idioma3.setText("Anglès");
 			break;
-		case "Anglès":
+		case "angles":
 			idioma1.setText("Català");
 			idioma2.setText("Castellà");
 			idioma3.setText("Francès");
 			break;
 		}
 		
-		if(idiomaTriat.equals("Català")){
+		if(idiomaTriat.equals("catala")){
 			idiomaTriat="nom";
 		}
 		
 		try {
-			Class.forName("com.mysql.jbc.Driver");
+			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = null;
 			
 			try {
-				con = DriverManager.getConnection("jdbc:mysql://192.168.4.1/traductor", "foot", "ball");
+				//con = DriverManager.getConnection("jdbc:mysql://192.168.4.1/traductor", "foot", "ball");
+				con = DriverManager.getConnection("jdbc:mysql://localhost:3306/traductor", "foot", "ball");
 				
 				if(con!=null){
 					Statement consulta = con.createStatement();
-					ResultSet resultat = consulta.executeQuery("SELECT * FROM colors WHERE " + idiomaTriat + " = '" + nom + "'");
+					ResultSet resultat = consulta.executeQuery("SELECT nom, castella, frances, angles FROM colors WHERE " + idiomaTriat + " = '" + nom + "'");
 					
-					int[] posicions = new int[3];
-
+					while(resultat.next()){
+						switch (idiomaTriat) {
+						case "catala":
+							color1.setText(resultat.getString(2));
+							color2.setText(resultat.getString(3));
+							color3.setText(resultat.getString(4));
+							break;
+						case "castella":
+							color1.setText(resultat.getString(1));
+							color2.setText(resultat.getString(3));
+							color3.setText(resultat.getString(4));
+							break;
+						case "frances":
+							color1.setText(resultat.getString(1));
+							color2.setText(resultat.getString(2));
+							color3.setText(resultat.getString(4));
+							break;
+						case "angles":
+							color1.setText(resultat.getString(1));
+							color2.setText(resultat.getString(2));
+							color3.setText(resultat.getString(3));
+							break;
+						}
+					}
 					
-
-						color1.setText(resultat.getString(posicions[0] + 2));
-						color2.setText(resultat.getString(posicions[1] + 2));
-						color3.setText(resultat.getString(posicions[2] + 2));
 					con.close();
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+				System.out.println("La conecció a fallat");
 				e.printStackTrace();
 			}
 			
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+			System.out.println("driver");
 			e.printStackTrace();
 		}
 	}
