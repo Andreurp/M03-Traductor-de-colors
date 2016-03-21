@@ -89,8 +89,8 @@ public class SampleController implements Initializable{
 			Connection con = null;
 			
 			try {
-				//con = DriverManager.getConnection("jdbc:mysql://192.168.4.1/traductor", "foot", "ball");
-				con = DriverManager.getConnection("jdbc:mysql://localhost:3306/traductor", "foot", "ball");
+				con = DriverManager.getConnection("jdbc:mysql://192.168.4.1/traductor", "foot", "ball");
+				//con = DriverManager.getConnection("jdbc:mysql://localhost:3306/traductor", "foot", "ball");
 				
 				if(con!=null){
 					Statement consulta = con.createStatement();
