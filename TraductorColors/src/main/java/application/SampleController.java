@@ -20,7 +20,7 @@ import javafx.scene.control.ComboBox;
 
 import javafx.scene.input.MouseEvent;
 
-public class SampleController implements Initializable{
+public class SampleController implements Initializable {
 	@FXML
 	private ComboBox<String> idioma;
 	@FXML
@@ -40,23 +40,17 @@ public class SampleController implements Initializable{
 	@FXML
 	private Label color3;
 
-
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		idioma.getItems().addAll(
-				"catala",
-				"castella",
-				"frances",
-				"angles"
-				);
+		idioma.getItems().addAll("catala", "castella", "frances", "angles");
 	}
-	
+
 	// Event Listener on Button[#btnCercar].onMouseClicked
 	@FXML
 	public void traduirColor(MouseEvent event) {
-		
-		String idiomaTriat=idioma.getValue();
-		String nom=nomColor.getText();
-		
+
+		String idiomaTriat = idioma.getValue();
+		String nom = nomColor.getText();
+
 		switch (idiomaTriat) {
 		case "catala":
 			idioma1.setText("Castellà");
@@ -79,57 +73,47 @@ public class SampleController implements Initializable{
 			idioma3.setText("Francès");
 			break;
 		}
-		
-		if(idiomaTriat.equals("catala")){
-			idiomaTriat="nom";
-		}
-		
+
+		Connection con = null;
+
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con = null;
-			
-			try {
-				con = DriverManager.getConnection("jdbc:mysql://192.168.4.1/traductor", "foot", "ball");
-				//con = DriverManager.getConnection("jdbc:mysql://localhost:3306/traductor", "foot", "ball");
-				
-				if(con!=null){
-					Statement consulta = con.createStatement();
-					ResultSet resultat = consulta.executeQuery("SELECT nom, castella, frances, angles FROM colors WHERE " + idiomaTriat + " = '" + nom + "'");
-					
-					while(resultat.next()){
-						switch (idiomaTriat) {
-						case "nom":
-							color1.setText(resultat.getString(2));
-							color2.setText(resultat.getString(3));
-							color3.setText(resultat.getString(4));
-							break;
-						case "castella":
-							color1.setText(resultat.getString(1));
-							color2.setText(resultat.getString(3));
-							color3.setText(resultat.getString(4));
-							break;
-						case "frances":
-							color1.setText(resultat.getString(1));
-							color2.setText(resultat.getString(2));
-							color3.setText(resultat.getString(4));
-							break;
-						case "angles":
-							color1.setText(resultat.getString(1));
-							color2.setText(resultat.getString(2));
-							color3.setText(resultat.getString(3));
-							break;
-						}
+			con = DriverManager.getConnection("jdbc:mysql://192.168.4.1/traductor", "foot", "ball");
+			// con = DriverManager.getConnection("jdbc:mysql://localhost:3306/traductor", "foot", "ball");
+
+			if (con != null) {
+				Statement consulta = con.createStatement();
+				ResultSet resultat = consulta.executeQuery(
+						"SELECT catala, castella, frances, angles FROM colors WHERE " + idiomaTriat + " = '" + nom + "'");
+
+				while (resultat.next()) {
+					switch (idiomaTriat) {
+					case "catala":
+						color1.setText(resultat.getString(2));
+						color2.setText(resultat.getString(3));
+						color3.setText(resultat.getString(4));
+						break;
+					case "castella":
+						color1.setText(resultat.getString(1));
+						color2.setText(resultat.getString(3));
+						color3.setText(resultat.getString(4));
+						break;
+					case "frances":
+						color1.setText(resultat.getString(1));
+						color2.setText(resultat.getString(2));
+						color3.setText(resultat.getString(4));
+						break;
+					case "angles":
+						color1.setText(resultat.getString(1));
+						color2.setText(resultat.getString(2));
+						color3.setText(resultat.getString(3));
+						break;
 					}
-					
-					con.close();
 				}
-			} catch (SQLException e) {
-				System.out.println("La conecció a fallat");
-				e.printStackTrace();
+
+				con.close();
 			}
-			
-		} catch (ClassNotFoundException e) {
-			System.out.println("driver");
+		} catch (SQLException e) {
+			System.out.println("La conecció a fallat");
 			e.printStackTrace();
 		}
 	}
